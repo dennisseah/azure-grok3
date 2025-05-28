@@ -15,12 +15,10 @@ def test_get_client(mocker: MockerFixture):
     patched_azure_openai.assert_called_once()
 
 
-def test_tool_calls(mocker: MockerFixture):
-    mock_llm_client = MagicMock()
-
-    mock_llm_client.chat.completions.create.return_value.choices = [
-        MagicMock(message=MagicMock(content="test output"))
-    ]
-    svc = AzureGrok3Service(env=MagicMock(), client=mock_llm_client)
-    result = svc.generate("Test system prompt")
-    assert result == "test output"
+def test_get_model(mocker: MockerFixture):
+    mock_env = MagicMock()
+    mock_env.azure_grok3_model = "grok3-model"
+    svc = AzureGrok3Service(env=mock_env, client=MagicMock())
+    assert svc.get_client() is not None
+    model = svc.get_model()
+    assert model == "grok3-model"

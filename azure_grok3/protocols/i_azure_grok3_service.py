@@ -18,11 +18,10 @@ class IAzureGrok3Service(Protocol):
         """
         ...
 
-    def generate(self, system_prompt: str) -> str:
+    def get_model(self) -> str:
         """
-        Generate a response using the Azure Grok3 model.
+        Get the model name from the environment.
 
-        :param system_prompt: The system prompt for the model.
-        :return: response
+        :return: The model name.
         """
         ...
