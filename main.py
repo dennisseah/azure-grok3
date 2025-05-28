@@ -24,4 +24,10 @@ def generate(
     )
 
 
-print(generate("Can help to understand Grok3 model"))
+user_input = ""
+
+while user_input.lower() != "exit":
+    user_input = input("Enter a system prompt (or type 'exit' to quit): ")
+    if user_input.lower() != "exit":
+        print("Generating response...")
+        print(generate(user_input))
